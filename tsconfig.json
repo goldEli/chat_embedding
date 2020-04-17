@@ -2,9 +2,12 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
+    "sourceMap": true,
     "declaration": true,
     "outDir": "./lib",
-    "strict": true
+    "strict": true,
+    "jsx": "react",
+    "allowJs": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "**/__tests__/*"]

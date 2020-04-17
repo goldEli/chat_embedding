@@ -2,7 +2,8 @@
   "name": "chat_embedding",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
@@ -12,9 +13,12 @@
   },
   "author": "",
   "license": "ISC",
-  "files": ["lib/**/*"],
+  "files": [
+    "lib/**/*"
+  ],
   "dependencies": {
     "prettier": "^2.0.4",
+    "ts-loader": "^7.0.0",
     "tslint": "^6.1.1",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.8.3",
