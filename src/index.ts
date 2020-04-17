@@ -2,10 +2,19 @@
  * @Author: miaoyu
  * @Date: 2020-04-17 13:40:42
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-17 14:43:32
+ * @LastEditTime: 2020-04-17 17:21:15
  * @Description:
  */
+
+// exports.hello = function() {
+//   console.log('hello world!')
+// }
+
+console.log("引入成功")
 const md = {
-  greeter:(name: string) => `Hello ${name} `
+  hello: (value: string) => console.log(value)
 }
-export default md
+
+console.log(md)
+
+module.exports = md 
