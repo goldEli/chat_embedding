@@ -1,7 +1,7 @@
 {
   "name": "chat_embedding",
   "version": "1.0.1",
-  "description": "",
+  "description": "聊天机器人嵌入脚本",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
