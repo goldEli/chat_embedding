@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-17 13:40:42
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-18 11:39:17
+ * @LastEditTime: 2020-04-18 13:44:38
  * @Description:
  */
 import * as React from 'react';
@@ -24,11 +24,10 @@ interface Position {
 
 const md = {
   run: (params: Params) => {
-    console.log(params.serverUrl);
 
     ReactDOM.render(
       <React.StrictMode>
-        <App />
+        <App src={params.serverUrl}/>
       </React.StrictMode>,
       createContainer(),
     );

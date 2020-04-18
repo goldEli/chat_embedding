@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-18 10:07:45
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-18 13:20:30
+ * @LastEditTime: 2020-04-18 13:45:02
  * @Description:
  */
 import * as React from 'react';
@@ -14,7 +14,9 @@ import './app.css';
 import robotImg from './images/robot.png';
 import ChatRoomModal, { RefChatRoomModal } from './containers/ChatRoomModal';
 
-interface Props {}
+interface Props {
+  src: string
+}
 
 const menuData = [
   { key: 'mail', label: '售前咨询' },
@@ -41,7 +43,7 @@ const App: React.FC<Props> = (props) => {
           {MenuItems}
         </Menu>
       </MenuBox>
-      <ChatRoomModal ref={refChatRoomModal} />
+      <ChatRoomModal src={props.src} ref={refChatRoomModal} />
     </Box>
   );
 };
