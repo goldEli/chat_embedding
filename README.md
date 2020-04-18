@@ -16,7 +16,7 @@
 npm install chat_embedding
 ```
 
-### How to use
+### How To Use
 
 ```JavaScript
 import chatEmbedding from "chat_embedding"

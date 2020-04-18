@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-17 13:40:42
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-18 15:52:54
+ * @LastEditTime: 2020-04-18 16:19:07
  * @Description:
  */
 import * as React from 'react';
@@ -20,7 +20,7 @@ interface ChatEmbedding {
   run: (params: Params) => void
 }
 
-const md: ChatEmbedding = {
+const chat_embedding: ChatEmbedding = {
   run: (params: Params) => {
 
     ReactDOM.render(
@@ -49,4 +49,4 @@ function createContainer(style?: CSSStyleDeclaration) {
   return container;
 }
 
-export default md;
+export default chat_embedding;
