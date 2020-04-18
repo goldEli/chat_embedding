@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-18 12:28:21
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-18 14:15:28
+ * @LastEditTime: 2020-04-18 14:37:57
  * @Description: chat room modal
  */
 
@@ -20,7 +20,7 @@ type Open = (title: string) => void;
 export type RefChatRoomModal = { open: Open };
 
 const ChatRoomModal = (props: Props, ref?: React.Ref<RefChatRoomModal>) => {
-  const [visible, setVisible] = React.useState(true);
+  const [visible, setVisible] = React.useState(false);
 
   const [title, setTitle] = React.useState('');
 
@@ -55,6 +55,15 @@ const ChatRoomModal = (props: Props, ref?: React.Ref<RefChatRoomModal>) => {
 const ModalStyled = styled(Modal)`
   .ant-modal-body {
     padding: 0;
+  }
+  .ant-modal-header {
+    background-color: rgb(102, 147, 219);
+  }
+  .ant-modal-header span{
+    color: #fff;
+  }
+  .ant-modal-close-x {
+    color: #fff;
   }
 `;
 
