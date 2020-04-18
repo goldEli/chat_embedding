@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-17 13:26:45
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-17 13:38:16
+ * @LastEditTime: 2020-04-18 14:40:21
  * @Description: 
  -->
 
@@ -20,11 +20,11 @@ npm install chat_embedding
 #### how to use
 
 ```JavaScript
-import ChatEmbedding from "chat_embedding"
+import chatEmbedding from "chat_embedding"
 
-// 初始化传入机器人服务地址
-new chatE = ChatEmbedding("http://10.0.10.100:3000")
-
-chatE.run()
+chatEmbedding.run({
+  // 聊天机器人服务地址
+  serverUrl: "https://www.baidu.com/",
+})
 
 ```
