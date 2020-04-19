@@ -2,14 +2,18 @@
  * @Author: miaoyu
  * @Date: 2020-04-18 10:07:45
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-18 13:45:02
+ * @LastEditTime: 2020-04-19 20:10:02
  * @Description:
  */
 import * as React from 'react';
 import styled from 'styled-components';
-import { Avatar, Menu, Tooltip } from 'antd';
+// import { Avatar, Menu } from 'antd';
+import Avatar from "antd/es/avatar"
+import "antd/es/avatar/style/index.css"
+import Menu from "antd/es/menu"
+import "antd/es/menu/style/index.css"
 import { ClickParam } from 'antd/lib/menu';
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.css';
 import './app.css';
 import robotImg from './images/robot.png';
 import ChatRoomModal, { RefChatRoomModal } from './containers/ChatRoomModal';

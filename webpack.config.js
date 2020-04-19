@@ -2,14 +2,14 @@
  * @Author: miaoyu
  * @Date: 2020-04-17 13:42:03
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-18 11:10:54
+ * @LastEditTime: 2020-04-19 20:03:25
  * @Description:
  */
 const path = require('path');
 
 module.exports = {
-  // mode: "production",
-  mode: 'development',
+  mode: "production",
+  // mode: 'development',
   entry: './src/index.tsx',
   // devtool: 'source-map',
   module: {

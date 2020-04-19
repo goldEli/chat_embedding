@@ -2,12 +2,13 @@
  * @Author: miaoyu
  * @Date: 2020-04-18 12:28:21
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-18 14:37:57
+ * @LastEditTime: 2020-04-19 20:08:29
  * @Description: chat room modal
  */
 
 import * as React from 'react';
-import { Modal } from 'antd';
+import Modal from 'antd/es/modal';
+import "antd/es/modal/style/index.css"
 import styled from 'styled-components';
 import ModalDragTitle from '../../components/ModalDragTitle';
 
