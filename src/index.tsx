@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-17 13:40:42
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-20 11:24:15
+ * @LastEditTime: 2020-04-20 11:48:08
  * @Description:
  */
 import * as React from 'react';
@@ -29,7 +29,7 @@ const chatEmbedding: ChatEmbedding = {
   run: (params: Params) => {
     ReactDOM.render(
       <React.StrictMode>
-        <App src={params.serverUrl} />
+        <App url={params.serverUrl} />
       </React.StrictMode>,
       createContainer(params.position),
     );
