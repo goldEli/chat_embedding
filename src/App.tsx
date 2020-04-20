@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-18 10:07:45
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-20 12:20:33
+ * @LastEditTime: 2020-04-20 12:25:50
  * @Description:
  */
 import * as React from 'react';
@@ -62,7 +62,7 @@ const MenuBox = styled.div`
 
 const Box = styled.div`
   display: ${(props: { visible: boolean }) => {
-    return visible ? 'block' : 'none';
+    return props.visible ? 'block' : 'none';
   }}
   position: relative;
   &:hover ${MenuBox} {
