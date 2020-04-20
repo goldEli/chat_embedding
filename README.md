@@ -26,6 +26,11 @@ import chatEmbedding from "chat_embedding"
 chatEmbedding.run({
   // 聊天机器人服务地址
   serverUrl: "https://www.baidu.com/",
+  // 自定义机器人出现的位置
+  position: {
+    left: "200px",
+    bottom: "200px"
+  }
 })
 
 ```

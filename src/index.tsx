@@ -2,51 +2,64 @@
  * @Author: miaoyu
  * @Date: 2020-04-17 13:40:42
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-18 16:19:07
+ * @LastEditTime: 2020-04-20 11:24:15
  * @Description:
  */
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import App from './App';
 
+interface Position {
+  left?: string;
+  right?: string;
+  top?: string;
+  bottom?: string;
+}
+
 interface Params {
   serverUrl: string;
-  style?: CSSStyleDeclaration;
+  position?: Position;
 }
-
-type Run = (params: Params) => void
 
 interface ChatEmbedding {
-  run: (params: Params) => void
+  run: (params: Params) => void;
 }
 
-const chat_embedding: ChatEmbedding = {
+const chatEmbedding: ChatEmbedding = {
   run: (params: Params) => {
-
     ReactDOM.render(
       <React.StrictMode>
-        <App src={params.serverUrl}/>
+        <App src={params.serverUrl} />
       </React.StrictMode>,
-      createContainer(params.style),
+      createContainer(params.position),
     );
   },
 };
 
-function createContainer(style?: CSSStyleDeclaration) {
+function createContainer(position?: Position) {
   const container = document.createElement('div');
 
-  if (!style) {
-    container.style.position = 'fixed';
+  container.style.position = 'fixed';
+  if (!position) {
     container.style.left = '100px';
     container.style.bottom = '100px';
   } else {
-    Object.keys(style).forEach((key: any) => {
-      container.style[key] = style[key];
-    });
+    if (position.left) {
+      container.style.left = position.left;
+    }
+    if (position.right) {
+      container.style.right = position.right;
+    }
+    if (position.top) {
+      container.style.top = position.top;
+    }
+    if (position.bottom) {
+      container.style.bottom = position.bottom;
+    }
   }
 
   document.body.appendChild(container);
   return container;
 }
 
-export default chat_embedding;
+export default chatEmbedding;
