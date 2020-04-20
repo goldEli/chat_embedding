@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-20 11:29:30
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-20 12:12:16
+ * @LastEditTime: 2020-04-20 13:38:46
  * @Description:
  */
 import * as React from 'react';
@@ -114,7 +114,7 @@ export const setCurrentBusinessType = (value: string) => {
 };
 
 function createSocket(url: string) {
-  const u = `ws://${url.split('://')[1]}/webSocket`;
+  const u = `ws://${url.split('://')[1]}/business`;
   return new Promise((resolve, reject) => {
     const s = new WebSocket(u);
     s.onopen = function () {
