@@ -1,5 +1,7 @@
 # chat_embedding 
 
+> 支持 Typescript
+
 聊天机器人嵌入脚本
 
  [![NPM version][npm-image]][npm-url] 
