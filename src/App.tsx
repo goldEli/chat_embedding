@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-18 10:07:45
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-20 12:54:39
+ * @LastEditTime: 2020-04-20 15:15:40
  * @Description:
  */
 import * as React from 'react';
@@ -37,9 +37,10 @@ const App: React.FC<Props> = (props) => {
   });
 
   const visible = data.listOfBusinessTypes.length > 0;
+  console.log(data.listOfBusinessTypes, visible)
 
   return (
-    <Box visible={visible}>
+    <Box visible={visible} className="app">
       <Avatar src={robotImg} />
       <MenuBox>
         <Menu onClick={handleClick} mode="vertical-right">
@@ -61,13 +62,11 @@ const MenuBox = styled.div`
 `;
 
 const Box = styled.div`
-  display: ${(props: { visible: boolean }) => {
-    return props.visible ? 'block' : 'none';
-  }}
+  display: ${(props: {visible: boolean}) => props.visible ? "block" : "none"};
   position: relative;
   &:hover ${MenuBox} {
     display: block;
-  }
+  };
 `;
 
 export default App;
