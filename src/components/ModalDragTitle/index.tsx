@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-18 14:00:28
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-20 11:17:09
+ * @LastEditTime: 2020-04-21 11:26:37
  * @Description: modal drag
  */
 
@@ -28,7 +28,9 @@ const ModalDragTitle: React.FC<Props> = (props) => {
   return (
     <DragM updateTransform={updateTransform}>
       <div>
-        <span>{props.title}</span>
+        <div style={{ display: 'flex' }}>
+          <span>{props.title}</span>
+        </div>
       </div>
     </DragM>
   );

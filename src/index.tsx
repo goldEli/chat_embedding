@@ -2,60 +2,49 @@
  * @Author: miaoyu
  * @Date: 2020-04-17 13:40:42
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-20 11:48:08
+ * @LastEditTime: 2020-04-21 11:46:25
  * @Description:
  */
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import App from './App';
-
-interface Position {
-  left?: string;
-  right?: string;
-  top?: string;
-  bottom?: string;
-}
-
-interface Params {
-  serverUrl: string;
-  position?: Position;
-}
+import { Config, Position, ConfigFromCustom } from './type';
+import { ConfigContextProvider, defaultConfig } from './ConfigContext';
 
 interface ChatEmbedding {
-  run: (params: Params) => void;
+  run: (config: Config) => void;
 }
 
 const chatEmbedding: ChatEmbedding = {
-  run: (params: Params) => {
+  run: (config: ConfigFromCustom) => {
+    const newConfg = { ...defaultConfig, ...config };
+    console.log({defaultConfig, config, newConfg})
     ReactDOM.render(
       <React.StrictMode>
-        <App url={params.serverUrl} />
+        <ConfigContextProvider value={newConfg}>
+          <App />
+        </ConfigContextProvider>
       </React.StrictMode>,
-      createContainer(params.position),
+      createContainer(newConfg.position),
     );
   },
 };
 
-function createContainer(position?: Position) {
+function createContainer(position: Position) {
   const container = document.createElement('div');
 
   container.style.position = 'fixed';
-  if (!position) {
-    container.style.left = '100px';
-    container.style.bottom = '100px';
-  } else {
-    if (position.left) {
-      container.style.left = position.left;
-    }
-    if (position.right) {
-      container.style.right = position.right;
-    }
-    if (position.top) {
-      container.style.top = position.top;
-    }
-    if (position.bottom) {
-      container.style.bottom = position.bottom;
-    }
+  if (position.left) {
+    container.style.left = position.left + 'px';
+  }
+  if (position.right) {
+    container.style.right = position.right + 'px';
+  }
+  if (position.top) {
+    container.style.top = position.top + 'px';
+  }
+  if (position.bottom) {
+    container.style.bottom = position.bottom + 'px';
   }
 
   document.body.appendChild(container);

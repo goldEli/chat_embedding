@@ -2,15 +2,16 @@
  * @Author: miaoyu
  * @Date: 2020-04-18 12:28:21
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-20 12:51:17
+ * @LastEditTime: 2020-04-21 11:50:29
  * @Description: chat room modal
  */
 
 import * as React from 'react';
 import Modal from 'antd/es/modal';
-import "antd/es/modal/style/index.css"
+import 'antd/es/modal/style/index.css';
 import styled from 'styled-components';
 import ModalDragTitle from '../../components/ModalDragTitle';
+import {configContext} from "../../ConfigContext"
 
 interface Props {
   src: string;
@@ -24,6 +25,8 @@ const ChatRoomModal = (props: Props, ref?: React.Ref<RefChatRoomModal>) => {
   const [visible, setVisible] = React.useState(false);
 
   const [title, setTitle] = React.useState('');
+
+  const config = React.useContext(configContext)
 
   const open: Open = (title) => {
     setTitle(title);
@@ -45,8 +48,8 @@ const ChatRoomModal = (props: Props, ref?: React.Ref<RefChatRoomModal>) => {
   const ModalTitle = <ModalDragTitle title={title || '标题'} />;
 
   return (
-    <ModalStyled width={800} title={ModalTitle} visible={visible} onOk={handleOk} onCancel={handleCancel} footer={null}>
-      <ChatRoomBox>
+    <ModalStyled width={config.modalWidth} title={ModalTitle} visible={visible} onOk={handleOk} onCancel={handleCancel} footer={null}>
+      <ChatRoomBox height={config.modalHeight}>
         <ChatRoom src={props.src} frameBorder="0" />
       </ChatRoomBox>
     </ModalStyled>
@@ -58,9 +61,14 @@ const ModalStyled = styled(Modal)`
     padding: 0;
   }
   .ant-modal-header {
-    background-color: rgb(102, 147, 219);
+    background-color: #3b5aa4;
+    padding: 8px 24px;
   }
-  .ant-modal-header span{
+  .ant-modal-close-x {
+    height: 39px;
+    line-height: 39px;
+  }
+  .ant-modal-header span {
     color: #fff;
   }
   .ant-modal-close-x {
@@ -70,7 +78,7 @@ const ModalStyled = styled(Modal)`
 
 const ChatRoomBox = styled.div`
   width: 100%;
-  height: 500px;
+  height: ${(props: {height: number}) => props.height + "px"};
 `;
 const ChatRoom = styled.iframe`
   width: 100%;

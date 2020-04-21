@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-18 10:07:45
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-20 15:15:40
+ * @LastEditTime: 2020-04-21 11:45:45
  * @Description:
  */
 import * as React from 'react';
@@ -18,14 +18,15 @@ import './app.css';
 import robotImg from './images/robot.png';
 import ChatRoomModal, { RefChatRoomModal } from './containers/ChatRoomModal';
 import useSocket, { setCurrentBusinessType } from './hooks/useSocket';
+import { configContext } from './ConfigContext';
 
 interface Props {
-  url: string;
 }
 
 const App: React.FC<Props> = (props) => {
   const refChatRoomModal = React.useRef<RefChatRoomModal>(null);
-  const [data] = useSocket(props.url);
+  const config = React.useContext(configContext);
+  const [data] = useSocket(config.serverUrl);
 
   function handleClick(param: ClickParam) {
     setCurrentBusinessType(param.key);
@@ -37,7 +38,6 @@ const App: React.FC<Props> = (props) => {
   });
 
   const visible = data.listOfBusinessTypes.length > 0;
-  console.log(data.listOfBusinessTypes, visible)
 
   return (
     <Box visible={visible} className="app">
@@ -47,7 +47,7 @@ const App: React.FC<Props> = (props) => {
           {MenuItems}
         </Menu>
       </MenuBox>
-      <ChatRoomModal src={props.url} ref={refChatRoomModal} />
+      <ChatRoomModal src={config.serverUrl} ref={refChatRoomModal} />
     </Box>
   );
 };
@@ -62,13 +62,11 @@ const MenuBox = styled.div`
 `;
 
 const Box = styled.div`
-  display: ${(props: {visible: boolean}) => props.visible ? "block" : "none"};
+  display: ${(props: { visible: boolean }) => (props.visible ? 'block' : 'none')};
   position: relative;
   &:hover ${MenuBox} {
     display: block;
-  };
+  }
 `;
 
 export default App;
-
-

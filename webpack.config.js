@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-17 13:42:03
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-19 20:03:25
+ * @LastEditTime: 2020-04-21 11:41:35
  * @Description:
  */
 const path = require('path');
@@ -15,7 +15,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.m?js$/,
+        test: /\.tsx?$/,
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',
