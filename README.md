@@ -41,10 +41,9 @@ chatEmbedding.run({
 
 ```javaScript
 // 聊天机器人服务地址
-var serverUrl = "http://10.0.10.100:8237",
+var serverUrl = "http://10.0.10.100:8237"
 // 脚本文件地址
 var jsFileUrl = serverUrl+"/static/js/chat_embedding.js"
-    scriptTag.src = url;
 
 var scriptTag = document.createElement('script');
 
@@ -63,11 +62,7 @@ scriptTag.onload = function () {
     modalWidth: 800,
     modalHeight: 500,
   })
-} 
-
-scriptTag.onreadystatechange = implementationCode;
+}
 
 document.body.appendChild(scriptTag);
-
-
 ```
