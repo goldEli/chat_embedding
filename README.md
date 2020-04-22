@@ -12,20 +12,19 @@
 
 
 ## Getting started
-### Install
+
+#### Using npm or yarn
 
 ```shell
-npm install chat_embedding
+$ npm install chat_embedding
 ```
-
-### How To Use
 
 ```JavaScript
 import chatEmbedding from "chat_embedding"
 
 chatEmbedding.run({
   // 聊天机器人服务地址
-  serverUrl: "https://www.baidu.com/",
+  serverUrl: "http://10.0.10.100:8237",
   // 自定义机器人出现的位置
   position: {
     left: 100,
@@ -35,5 +34,40 @@ chatEmbedding.run({
   modalWidth: 800,
   modalHeight: 500,
 })
+
+```
+
+#### Import in Browser
+
+```javaScript
+// 聊天机器人服务地址
+var serverUrl = "http://10.0.10.100:8237",
+// 脚本文件地址
+var jsFileUrl = serverUrl+"/static/js/chat_embedding.js"
+    scriptTag.src = url;
+
+var scriptTag = document.createElement('script');
+
+scriptTag.src = jsFileUrl;
+
+scriptTag.onload = function () {
+  chatEmbedding.run({
+    // 聊天机器人服务地址
+    serverUrl,
+    // 自定义机器人出现的位置
+    position: {
+      left: 100,
+      bottom: 100,
+    },
+    // 聊天窗口大小
+    modalWidth: 800,
+    modalHeight: 500,
+  })
+} 
+
+scriptTag.onreadystatechange = implementationCode;
+
+document.body.appendChild(scriptTag);
+
 
 ```
