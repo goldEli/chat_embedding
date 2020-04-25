@@ -2,29 +2,34 @@
  * @Author: miaoyu
  * @Date: 2020-04-17 13:40:42
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-22 11:49:56
+ * @LastEditTime: 2020-04-25 18:44:20
  * @Description:
  */
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import App from './App';
-import { Config, Position, ConfigFromCustom, ChatEmbedding } from './type';
+import { Position, ConfigFromCustom, ChatEmbedding } from './type';
 import { ConfigContextProvider, defaultConfig } from './ConfigContext';
 
 const chatEmbedding: ChatEmbedding = {
   run: (config: ConfigFromCustom) => {
     const newConfg = { ...defaultConfig, ...config };
     console.log({ defaultConfig, config, newConfg });
-    ReactDOM.render(
-      <React.StrictMode>
-        <ConfigContextProvider value={newConfg}>
-          <App />
-        </ConfigContextProvider>
-      </React.StrictMode>,
-      createContainer(newConfg.position),
-    );
+    loadScript(config.serverUrl);
+    function chatEmbeddingQueryWebsocket(webSocketUrl: string) {
+      ReactDOM.render(
+        <React.StrictMode>
+          <ConfigContextProvider value={{...newConfg, webSocketUrl}}>
+            <App />
+          </ConfigContextProvider>
+        </React.StrictMode>,
+        createContainer(newConfg.position),
+      );
+    }
+    window.chatEmbeddingQueryWebsocket = chatEmbeddingQueryWebsocket
   },
 };
+
 
 function createContainer(position: Position) {
   const container = document.createElement('div');
@@ -45,6 +50,18 @@ function createContainer(position: Position) {
 
   document.body.appendChild(container);
   return container;
+}
+
+function loadScript(url: string) {
+  const urlWithParams = url + '/?func=chatEmbeddingQueryWebsocket';
+
+  const scriptTag = document.createElement('script');
+
+  scriptTag.src = urlWithParams;
+
+  // scriptTag.onload = callback
+
+  document.body.appendChild(scriptTag);
 }
 
 window.chatEmbedding = chatEmbedding;

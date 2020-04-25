@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-20 11:29:30
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-22 11:34:34
+ * @LastEditTime: 2020-04-25 18:47:41
  * @Description:
  */
 import * as React from 'react';
@@ -75,7 +75,8 @@ const useMessage = (url: string): [StateType] => {
         socket.removeEventListener('message', eventHandle, false);
       });
     };
-  }, []);
+  }, [url]);
+
   const eventHandle = (response: any) => {
     const d = JSON.parse(response.data);
     const status = d.status;
@@ -113,13 +114,13 @@ export const setCurrentBusinessType = (value: string) => {
   });
 };
 
-function createSocket(urlStr: string) {
-  const url = new URL(urlStr)
-  const {host, protocol} = url
-  const websocketProtocol = protocol === "https:" ? "wss" : "ws"
-  const u = `${websocketProtocol}://${host}/business`;
+function createSocket(url: string) {
+  // const url = new URL(urlStr)
+  // const {host, protocol} = url
+  // const websocketProtocol = protocol === "https:" ? "wss" : "ws"
+  // const u = `${websocketProtocol}://${host}/business`;
   return new Promise((resolve, reject) => {
-    const s = new WebSocket(u);
+    const s = new WebSocket(url);
     s.onopen = function () {
       s.send('Hello Server!');
       resolve(s);

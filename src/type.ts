@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-21 10:54:53
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-22 11:48:00
+ * @LastEditTime: 2020-04-25 18:43:00
  * @Description:
  */
 
@@ -24,6 +24,7 @@ export interface Config extends ConfigFromCustom {
   position: Position;
   modalWidth: number;
   modalHeight: number;
+  webSocketUrl?: string; 
 }
 
 
@@ -35,5 +36,6 @@ declare global {
   interface Window {
     /** documentation on foo */
     chatEmbedding: ChatEmbedding;
+    chatEmbeddingQueryWebsocket: (webSocketUrl: string) => void;
   }
 }

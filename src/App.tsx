@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-18 10:07:45
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-21 11:45:45
+ * @LastEditTime: 2020-04-25 18:45:20
  * @Description:
  */
 import * as React from 'react';
@@ -26,7 +26,7 @@ interface Props {
 const App: React.FC<Props> = (props) => {
   const refChatRoomModal = React.useRef<RefChatRoomModal>(null);
   const config = React.useContext(configContext);
-  const [data] = useSocket(config.serverUrl);
+  const [data] = useSocket(config.webSocketUrl || "");
 
   function handleClick(param: ClickParam) {
     setCurrentBusinessType(param.key);
