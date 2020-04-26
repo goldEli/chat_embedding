@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-17 13:40:42
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-25 18:44:20
+ * @LastEditTime: 2020-04-26 08:58:08
  * @Description:
  */
 import * as React from 'react';
@@ -53,7 +53,7 @@ function createContainer(position: Position) {
 }
 
 function loadScript(url: string) {
-  const urlWithParams = url + '/?func=chatEmbeddingQueryWebsocket';
+  const urlWithParams = url + 'getBusinessInfo/?func=chatEmbeddingQueryWebsocket';
 
   const scriptTag = document.createElement('script');
 
