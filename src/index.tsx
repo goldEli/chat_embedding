@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-17 13:40:42
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-26 08:58:08
+ * @LastEditTime: 2020-04-26 16:15:48
  * @Description:
  */
 import * as React from 'react';
@@ -15,21 +15,25 @@ const chatEmbedding: ChatEmbedding = {
   run: (config: ConfigFromCustom) => {
     const newConfg = { ...defaultConfig, ...config };
     console.log({ defaultConfig, config, newConfg });
-    loadScript(config.serverUrl);
+
+    // 获取权限
+    createIframe(config.serverUrl, () => {
+      loadScript(config.serverUrl);
+      window.chatEmbeddingQueryWebsocket = chatEmbeddingQueryWebsocket;
+    });
+
     function chatEmbeddingQueryWebsocket(webSocketUrl: string) {
       ReactDOM.render(
         <React.StrictMode>
-          <ConfigContextProvider value={{...newConfg, webSocketUrl}}>
+          <ConfigContextProvider value={{ ...newConfg, webSocketUrl }}>
             <App />
           </ConfigContextProvider>
         </React.StrictMode>,
         createContainer(newConfg.position),
       );
     }
-    window.chatEmbeddingQueryWebsocket = chatEmbeddingQueryWebsocket
   },
 };
-
 
 function createContainer(position: Position) {
   const container = document.createElement('div');
@@ -62,6 +66,13 @@ function loadScript(url: string) {
   // scriptTag.onload = callback
 
   document.body.appendChild(scriptTag);
+}
+
+function createIframe(url: string, callback: () => void) {
+  const ifrm = document.createElement('iframe');
+  ifrm.setAttribute('src', url);
+  document.body.appendChild(ifrm); // to place at end of document
+  ifrm.onload = callback;
 }
 
 window.chatEmbedding = chatEmbedding;
