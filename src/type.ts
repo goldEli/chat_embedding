@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-21 10:54:53
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-25 18:43:00
+ * @LastEditTime: 2020-04-26 17:16:04
  * @Description:
  */
 
@@ -37,5 +37,6 @@ declare global {
     /** documentation on foo */
     chatEmbedding: ChatEmbedding;
     chatEmbeddingQueryWebsocket: (webSocketUrl: string) => void;
+    define: any;
   }
 }

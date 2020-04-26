@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-17 13:40:42
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-26 16:42:50
+ * @LastEditTime: 2020-04-26 17:29:12
  * @Description:
  */
 import * as React from 'react';
@@ -76,6 +76,23 @@ function createIframe(url: string, callback: () => void) {
   ifrm.onload = callback;
 }
 
-window.chatEmbedding = chatEmbedding;
+// if (window) {
+// window.chatEmbedding = chatEmbedding;
+// } else {
+//   console.error("无法访问到window对象");
+  
+// }
+
+;(function(undefined) {
+  "use strict"
+  // 最后将插件对象暴露给全局对象
+  console.log(chatEmbedding)
+  var _global: any = (function(this: any){ return this || (0, eval)('this'); }());
+  if (typeof module !== "undefined" && module.exports) {
+      module.exports = chatEmbedding;
+  } else {
+      !('chatEmbedding' in _global) && (_global.chatEmbedding = chatEmbedding);
+  }
+}());
 
 export default chatEmbedding;
