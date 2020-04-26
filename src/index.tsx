@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-17 13:40:42
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-26 16:15:48
+ * @LastEditTime: 2020-04-26 16:42:50
  * @Description:
  */
 import * as React from 'react';
@@ -70,6 +70,7 @@ function loadScript(url: string) {
 
 function createIframe(url: string, callback: () => void) {
   const ifrm = document.createElement('iframe');
+  ifrm.style.display = "none"
   ifrm.setAttribute('src', url);
   document.body.appendChild(ifrm); // to place at end of document
   ifrm.onload = callback;
