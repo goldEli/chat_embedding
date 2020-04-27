@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-17 13:40:42
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-26 17:29:12
+ * @LastEditTime: 2020-04-27 11:59:39
  * @Description:
  */
 import * as React from 'react';
@@ -57,7 +57,7 @@ function createContainer(position: Position) {
 }
 
 function loadScript(url: string) {
-  const urlWithParams = url + 'getBusinessInfo/?func=chatEmbeddingQueryWebsocket';
+  const urlWithParams = new URL('getBusinessInfo/?func=chatEmbeddingQueryWebsocket', url).toString();
 
   const scriptTag = document.createElement('script');
 
@@ -70,29 +70,37 @@ function loadScript(url: string) {
 
 function createIframe(url: string, callback: () => void) {
   const ifrm = document.createElement('iframe');
-  ifrm.style.display = "none"
+  ifrm.style.display = 'none';
   ifrm.setAttribute('src', url);
   document.body.appendChild(ifrm); // to place at end of document
-  ifrm.onload = callback;
+  ifrm.onload = () => {
+    //periodical message sender
+    let timer = setInterval(function(){
+      ifrm.contentWindow?.postMessage(location.href,url); //send the message and target URI
+    },1000);
+
+    //listen to holla back
+    window.addEventListener('message',function(event) {
+      clearInterval(timer)
+      callback()
+    },false);
+  };
 }
 
-// if (window) {
-// window.chatEmbedding = chatEmbedding;
-// } else {
-//   console.error("无法访问到window对象");
-  
-// }
-
-;(function(undefined) {
-  "use strict"
+(function (undefined) {
+  'use strict';
   // 最后将插件对象暴露给全局对象
-  console.log(chatEmbedding)
-  var _global: any = (function(this: any){ return this || (0, eval)('this'); }());
-  if (typeof module !== "undefined" && module.exports) {
-      module.exports = chatEmbedding;
-  } else {
-      !('chatEmbedding' in _global) && (_global.chatEmbedding = chatEmbedding);
+  console.log(chatEmbedding);
+  var _global: any = (function (this: any) {
+    return this || (0, eval)('this');
+  })();
+
+  console.log('绑定chatEmbedding');
+  !('chatEmbedding' in _global) && (_global.chatEmbedding = chatEmbedding);
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = chatEmbedding;
   }
-}());
+  // }
+})();
 
 export default chatEmbedding;

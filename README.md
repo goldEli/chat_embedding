@@ -49,7 +49,7 @@ var scriptTag = document.createElement('script');
 
 scriptTag.src = jsFileUrl;
 
-scriptTag.onreadystatechange = function () {
+scriptTag.onload = function () {
   chatEmbedding.run({
     // 聊天机器人服务地址
     serverUrl,

@@ -1,0 +1,47 @@
+<!--
+ * @Author: miaoyu
+ * @Date: 2020-04-27 09:06:23
+ * @LastEditors: miaoyu
+ * @LastEditTime: 2020-04-27 11:23:18
+ * @Description: 
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>123</div>
+    <script>
+      // 聊天机器人服务地址
+      var serverUrl = 'http://localhost:3000/';
+      // 脚本文件地址
+      // var jsFileUrl = serverUrl + '/static/js/chat_embedding.js';
+      var jsFileUrl = "./lib/index.js";
+
+      var scriptTag = document.createElement('script');
+
+      scriptTag.src = jsFileUrl;
+
+      scriptTag.onload = function () {
+        chatEmbedding.run({
+          // 聊天机器人服务地址
+          serverUrl,
+          // 自定义机器人出现的位置
+          position: {
+            left: 100,
+            bottom: 100,
+          },
+          // 聊天窗口大小
+          modalWidth: 800,
+          modalHeight: 500,
+        });
+      };
+
+      document.body.appendChild(scriptTag);
+
+    </script>
+  </body>
+</html>
