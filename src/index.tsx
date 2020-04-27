@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-17 13:40:42
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-27 11:59:39
+ * @LastEditTime: 2020-04-27 17:01:23
  * @Description:
  */
 import * as React from 'react';
@@ -39,6 +39,7 @@ function createContainer(position: Position) {
   const container = document.createElement('div');
 
   container.style.position = 'fixed';
+  container.style.zIndex = '99999';
   if (position.left) {
     container.style.left = position.left + 'px';
   }
@@ -74,33 +75,23 @@ function createIframe(url: string, callback: () => void) {
   ifrm.setAttribute('src', url);
   document.body.appendChild(ifrm); // to place at end of document
   ifrm.onload = () => {
-    //periodical message sender
-    let timer = setInterval(function(){
-      ifrm.contentWindow?.postMessage(location.href,url); //send the message and target URI
-    },1000);
+    // periodical message sender
+    let timer = setInterval(function () {
+      ifrm.contentWindow?.postMessage(location.href, url); //send the message and target URI
+    }, 1000);
+
+    function doStuff() {
+      window.removeEventListener('message', doStuff);
+      ifrm.remove();
+      clearInterval(timer);
+      callback();
+    }
 
     //listen to holla back
-    window.addEventListener('message',function(event) {
-      clearInterval(timer)
-      callback()
-    },false);
+    window.addEventListener('message', doStuff);
   };
 }
 
-(function (undefined) {
-  'use strict';
-  // 最后将插件对象暴露给全局对象
-  console.log(chatEmbedding);
-  var _global: any = (function (this: any) {
-    return this || (0, eval)('this');
-  })();
-
-  console.log('绑定chatEmbedding');
-  !('chatEmbedding' in _global) && (_global.chatEmbedding = chatEmbedding);
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = chatEmbedding;
-  }
-  // }
-})();
+window.chatEmbedding = chatEmbedding
 
 export default chatEmbedding;

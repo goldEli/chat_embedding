@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-18 10:07:45
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-25 18:45:20
+ * @LastEditTime: 2020-04-27 15:28:33
  * @Description:
  */
 import * as React from 'react';
@@ -66,7 +66,7 @@ const Box = styled.div`
   position: relative;
   &:hover ${MenuBox} {
     display: block;
-  }
+  };
 `;
 
 export default App;

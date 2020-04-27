@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-17 13:42:03
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-21 11:41:35
+ * @LastEditTime: 2020-04-27 17:01:51
  * @Description:
  */
 const path = require('path');
@@ -51,9 +51,10 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   output: {
-    library: 'chat_embedding',
+    library: 'chatEmbedding',
     libraryTarget: 'umd',
     filename: 'index.js',
     path: path.resolve(__dirname, 'lib'),
+    globalObject: 'this'
   },
 };
