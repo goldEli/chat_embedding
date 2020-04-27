@@ -50,7 +50,7 @@ var scriptTag = document.createElement('script');
 scriptTag.src = jsFileUrl;
 
 scriptTag.onload = function () {
-  chatEmbedding.run({
+  chatEmbedding.default.run({
     // 聊天机器人服务地址
     serverUrl,
     // 自定义机器人出现的位置
