@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-27 09:06:23
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-27 11:23:18
+ * @LastEditTime: 2020-04-28 12:53:48
  * @Description: 
  -->
 <!DOCTYPE html>
@@ -16,7 +16,7 @@
     <div>123</div>
     <script>
       // 聊天机器人服务地址
-      var serverUrl = 'http://localhost:3000/';
+      var serverUrl = "http://10.0.10.100:8237"
       // 脚本文件地址
       // var jsFileUrl = serverUrl + '/static/js/chat_embedding.js';
       var jsFileUrl = "./lib/index.js";
@@ -26,7 +26,7 @@
       scriptTag.src = jsFileUrl;
 
       scriptTag.onload = function () {
-        chatEmbedding.run({
+        chatEmbedding.default.run({
           // 聊天机器人服务地址
           serverUrl,
           // 自定义机器人出现的位置
