@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-18 10:07:45
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-28 14:54:41
+ * @LastEditTime: 2020-04-28 15:34:44
  * @Description:
  */
 import * as React from 'react';
@@ -19,8 +19,15 @@ import robotImg from './images/robot.png';
 import ChatRoomModal, { RefChatRoomModal } from './containers/ChatRoomModal';
 import useSocket, { setCurrentBusinessType } from './hooks/useSocket';
 import { configContext } from './ConfigContext';
+import salesImg from './images/sales.png';
+import preSalesImg from './images/pre_sales.png';
 
 interface Props {}
+
+const imgs: { [key: string]: string } = {
+  '1': preSalesImg,
+  '2': salesImg,
+};
 
 const App: React.FC<Props> = (props) => {
   const refChatRoomModal = React.useRef<RefChatRoomModal>(null);
@@ -38,8 +45,13 @@ const App: React.FC<Props> = (props) => {
     refChatRoomModal?.current?.open(title);
   }
 
-  const MenuItems = data.listOfBusinessTypes.map((item) => {
-    return <Menu.Item key={item.key}>{item.label}</Menu.Item>;
+  const MenuItems = data.listOfBusinessTypes.map((item, index) => {
+    return (
+      <MenuItemS key={item.key}>
+        <Img src={imgs[item.key] || imgs['1']}></Img>
+        {item.label}
+      </MenuItemS>
+    );
   });
 
   return (
@@ -66,6 +78,11 @@ const App: React.FC<Props> = (props) => {
   );
 };
 
+const Img = styled.img`
+  height: 20px;
+  padding-right: 8px;
+`;
+
 const AvatarBox = styled.div`
   cursor: pointer;
 `;
@@ -73,16 +90,20 @@ const AvatarBox = styled.div`
 const Box = styled.div`
   display: ${(props: { visible: boolean }) => (props.visible ? 'block' : 'none')};
   position: relative;
-  .ant-menu-submenu-arrow{
+  .ant-menu-submenu-arrow {
     display: none;
-  };
-  .ant-menu-submenu-title{
+  }
+  .ant-menu-submenu-title {
     padding: 0;
-  };
-  .ant-menu{
+  }
+  .ant-menu {
     background-color: transparent;
     border-color: transparent;
-  };
+  }
+`;
+const MenuItemS = styled(Menu.Item)`
+  display: flex;
+  align-items: center;
 `;
 
 export default App;
