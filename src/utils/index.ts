@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-28 13:01:11
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-28 13:03:02
+ * @LastEditTime: 2020-04-28 14:55:17
  * @Description: 
  */
 
@@ -49,8 +49,8 @@ export function createIframe(url: string, callback: () => void) {
   document.body.appendChild(ifrm); // to place at end of document
   ifrm.onload = () => {
     // periodical message sender
-    let timer = setInterval(function () {
-      ifrm.contentWindow?.postMessage(location.href, url); //send the message and target URI
+    const timer = setInterval( () => {
+      ifrm.contentWindow?.postMessage(location.href, url); 
     }, 1000);
 
     function doStuff() {
@@ -60,7 +60,6 @@ export function createIframe(url: string, callback: () => void) {
       callback();
     }
 
-    //listen to holla back
     window.addEventListener('message', doStuff);
   };
 }

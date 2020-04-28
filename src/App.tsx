@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-18 10:07:45
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-27 15:28:33
+ * @LastEditTime: 2020-04-28 14:54:41
  * @Description:
  */
 import * as React from 'react';
@@ -20,52 +20,68 @@ import ChatRoomModal, { RefChatRoomModal } from './containers/ChatRoomModal';
 import useSocket, { setCurrentBusinessType } from './hooks/useSocket';
 import { configContext } from './ConfigContext';
 
-interface Props {
-}
+interface Props {}
 
 const App: React.FC<Props> = (props) => {
   const refChatRoomModal = React.useRef<RefChatRoomModal>(null);
-  const config = React.useContext(configContext);
-  const [data] = useSocket(config.webSocketUrl || "");
 
-  function handleClick(param: ClickParam) {
-    setCurrentBusinessType(param.key);
-    refChatRoomModal?.current?.open(param.item.props.children);
+  const config = React.useContext(configContext);
+
+  const [data] = useSocket(config.webSocketUrl || '');
+
+  const showMenu = data.listOfBusinessTypes.length > 1;
+
+  const visible = data.listOfBusinessTypes.length > 0;
+
+  function handleClick(key: string, title: string) {
+    setCurrentBusinessType(key);
+    refChatRoomModal?.current?.open(title);
   }
 
   const MenuItems = data.listOfBusinessTypes.map((item) => {
     return <Menu.Item key={item.key}>{item.label}</Menu.Item>;
   });
 
-  const visible = data.listOfBusinessTypes.length > 0;
-
   return (
     <Box visible={visible} className="app">
-      <Avatar src={robotImg} />
-      <MenuBox>
-        <Menu onClick={handleClick} mode="vertical-right">
-          {MenuItems}
-        </Menu>
-      </MenuBox>
+      <Menu onClick={(param: ClickParam) => handleClick(param.key, param.item.props.children)} mode="vertical-right">
+        <Menu.SubMenu
+          title={
+            <AvatarBox
+              onClick={() => {
+                if (!visible) return;
+                const first = data.listOfBusinessTypes[0];
+                handleClick(first.key, first.label);
+              }}
+            >
+              <Avatar src={robotImg} />
+            </AvatarBox>
+          }
+        >
+          {showMenu && MenuItems}
+        </Menu.SubMenu>
+      </Menu>
       <ChatRoomModal src={config.serverUrl} ref={refChatRoomModal} />
     </Box>
   );
 };
 
-const MenuBox = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 32px;
-  padding-left: 8px;
-  display: none;
+const AvatarBox = styled.div`
   cursor: pointer;
 `;
 
 const Box = styled.div`
   display: ${(props: { visible: boolean }) => (props.visible ? 'block' : 'none')};
   position: relative;
-  &:hover ${MenuBox} {
-    display: block;
+  .ant-menu-submenu-arrow{
+    display: none;
+  };
+  .ant-menu-submenu-title{
+    padding: 0;
+  };
+  .ant-menu{
+    background-color: transparent;
+    border-color: transparent;
   };
 `;
 
