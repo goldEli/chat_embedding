@@ -2,14 +2,13 @@
  * @Author: miaoyu
  * @Date: 2020-04-18 10:07:45
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-28 15:48:22
+ * @LastEditTime: 2020-04-28 18:49:23
  * @Description:
  */
 import * as React from 'react';
 import styled from 'styled-components';
-// import { Avatar, Menu } from 'antd';
 import Avatar from 'antd/es/avatar';
-import 'antd/es/avatar/style/index.css';
+import "antd/es/avatar/style/index.css"
 import Menu from 'antd/es/menu';
 import 'antd/es/menu/style/index.css';
 import { ClickParam } from 'antd/lib/menu';
