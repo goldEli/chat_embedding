@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-18 10:07:45
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-28 15:34:44
+ * @LastEditTime: 2020-04-28 15:48:22
  * @Description:
  */
 import * as React from 'react';
@@ -40,9 +40,9 @@ const App: React.FC<Props> = (props) => {
 
   const visible = data.listOfBusinessTypes.length > 0;
 
-  function handleClick(key: string, title: string) {
+  function handleClick(key: string) {
     setCurrentBusinessType(key);
-    refChatRoomModal?.current?.open(title);
+    refChatRoomModal?.current?.open(data.listOfBusinessTypes.find((item) => item.key === key)?.label || '');
   }
 
   const MenuItems = data.listOfBusinessTypes.map((item, index) => {
@@ -56,14 +56,14 @@ const App: React.FC<Props> = (props) => {
 
   return (
     <Box visible={visible} className="app">
-      <Menu onClick={(param: ClickParam) => handleClick(param.key, param.item.props.children)} mode="vertical-right">
+      <Menu onClick={(param: ClickParam) => handleClick(param.key)} mode="vertical-right">
         <Menu.SubMenu
           title={
             <AvatarBox
               onClick={() => {
                 if (!visible) return;
                 const first = data.listOfBusinessTypes[0];
-                handleClick(first.key, first.label);
+                handleClick(first.key);
               }}
             >
               <Avatar src={robotImg} />
