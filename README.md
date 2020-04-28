@@ -23,16 +23,7 @@ $ npm install chat_embedding
 import chatEmbedding from "chat_embedding"
 
 chatEmbedding.run({
-  // 聊天机器人服务地址
   serverUrl: "http://10.0.10.100:8237",
-  // 自定义机器人出现的位置
-  position: {
-    left: 100,
-    bottom: 100,
-  },
-  // 聊天窗口大小
-  modalWidth: 800,
-  modalHeight: 500,
 })
 
 ```
@@ -50,18 +41,7 @@ var scriptTag = document.createElement('script');
 scriptTag.src = jsFileUrl;
 
 scriptTag.onload = function () {
-  chatEmbedding.default.run({
-    // 聊天机器人服务地址
-    serverUrl,
-    // 自定义机器人出现的位置
-    position: {
-      left: 100,
-      bottom: 100,
-    },
-    // 聊天窗口大小
-    modalWidth: 800,
-    modalHeight: 500,
-  })
+  chatEmbedding.default.run({serverUrl})
 }
 
 document.body.appendChild(scriptTag);
@@ -69,29 +49,10 @@ document.body.appendChild(scriptTag);
 
 ### Parameters
 
-```Javascript
-
-
-interface Parameters {
-  /**
-   * 聊天机器人服务地址 
-  */
-  serverUrl: string;
-  /**
-   * 聊天机器人位置 
-  */
-  position?: Position;
-  /**
-   * 聊天窗口宽 
-  */
-  modalWidth?: number;
-  /**
-   * 聊天窗口高 
-  */
-  modalHeight?: number;
-  /**
-   * 聊天窗口 logo 地址 
-  */
-  logoSrc?: string;
-}
-```
+| Property    | Description        | Required | Default                | Type                                                    |
+|-------------|--------------------|----------|------------------------|---------------------------------------------------------|
+| serverUrl   | 聊天机器人服务地址 | 是       |                        | string                                                  |
+| position    | 聊天机器人位置     | 否       | {left:100,bottom:100,} | {left?:number,bottom?:number,right?:number,top?:number} |
+| modalWidth  | 聊天窗口宽         | 否       | 800                    | number                                                  |
+| modalHeight | 聊天窗口高         | 否       | 500                    | number                                                  |
+| logoSrc     | 聊天窗口 logo 地址 | 否       |                        | string                                                  |
