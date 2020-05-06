@@ -2,13 +2,13 @@
  * @Author: miaoyu
  * @Date: 2020-04-18 10:07:45
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-28 20:23:21
+ * @LastEditTime: 2020-05-06 15:42:01
  * @Description:
  */
 import * as React from 'react';
 import styled from 'styled-components';
 import Avatar from 'antd/es/avatar';
-import "antd/es/avatar/style/css"
+import 'antd/es/avatar/style/css';
 import Menu from 'antd/es/menu';
 import 'antd/es/menu/style/css';
 import { ClickParam } from 'antd/lib/menu';
@@ -53,25 +53,27 @@ const App: React.FC<Props> = (props) => {
     );
   });
 
+  const robotBtn = (
+    <AvatarBox
+      onClick={() => {
+        if (!visible) return;
+        const first = data.listOfBusinessTypes[0];
+        handleClick(first.key);
+      }}
+    >
+      <Avatar src={robotImg} />
+    </AvatarBox>
+  );
+
   return (
     <Box visible={visible} className="app">
-      <Menu onClick={(param: ClickParam) => handleClick(param.key)} mode="vertical-right">
-        <Menu.SubMenu
-          title={
-            <AvatarBox
-              onClick={() => {
-                if (!visible) return;
-                const first = data.listOfBusinessTypes[0];
-                handleClick(first.key);
-              }}
-            >
-              <Avatar src={robotImg} />
-            </AvatarBox>
-          }
-        >
-          {showMenu && MenuItems}
-        </Menu.SubMenu>
-      </Menu>
+      {showMenu ? (
+        <Menu onClick={(param: ClickParam) => handleClick(param.key)} mode="vertical-right">
+          <Menu.SubMenu title={robotBtn}>{MenuItems}</Menu.SubMenu>
+        </Menu>
+      ) : (
+        robotBtn
+      )}
       <ChatRoomModal src={config.serverUrl} ref={refChatRoomModal} />
     </Box>
   );
