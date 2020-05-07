@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-18 10:07:45
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-05-06 15:42:01
+ * @LastEditTime: 2020-05-07 15:31:06
  * @Description:
  */
 import * as React from 'react';
@@ -80,7 +80,7 @@ const App: React.FC<Props> = (props) => {
 };
 
 const Img = styled.img`
-  height: 20px;
+  // height: 20px;
   padding-right: 8px;
 `;
 
