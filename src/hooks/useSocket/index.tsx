@@ -2,13 +2,14 @@
  * @Author: miaoyu
  * @Date: 2020-04-20 11:29:30
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-28 20:23:41
+ * @LastEditTime: 2020-05-09 12:05:15
  * @Description:
  */
 import * as React from 'react';
 
 import message from 'antd/es/message';
-import 'antd/es/message/style/css';
+// import 'antd/es/message/style/css';
+import "antd/es/message/style/index.css"
 
 enum TOPIC {
   /**

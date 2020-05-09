@@ -2,15 +2,18 @@
  * @Author: miaoyu
  * @Date: 2020-04-18 10:07:45
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-05-07 15:31:06
+ * @LastEditTime: 2020-05-09 11:44:22
  * @Description:
  */
 import * as React from 'react';
 import styled from 'styled-components';
 import Avatar from 'antd/es/avatar';
-import 'antd/es/avatar/style/css';
+// import 'antd/es/avatar/style/css';
+import "antd/es/avatar/style/index.css"
 import Menu from 'antd/es/menu';
-import 'antd/es/menu/style/css';
+// import 'antd/es/menu/style/css';
+import "antd/es/menu/style/index.css"
+import "antd/es/tooltip/style/index.css"
 import { ClickParam } from 'antd/lib/menu';
 // import 'antd/dist/antd.css';
 import './app.css';
