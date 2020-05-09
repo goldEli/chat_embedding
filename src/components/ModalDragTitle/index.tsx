@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-18 14:00:28
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-28 16:11:23
+ * @LastEditTime: 2020-05-09 14:32:29
  * @Description: modal drag
  */
 
@@ -35,7 +35,7 @@ const ModalDragTitle: React.FC<Props> = (props) => {
         <Title>
           {config.logoSrc && <Img className="chat-robot_logo" src={config.logoSrc} />}
           {config.logoSrc && <Spacer />}
-          <span>{props.title}</span>
+          <TitleText>{props.title}</TitleText>
         </Title>
       </div>
     </DragM>
@@ -49,6 +49,9 @@ const Spacer = styled.div`
 const Title = styled.div`
   display: flex;
   algin-item: center;
+`;
+const TitleText = styled.span`
+  font-size: 14px;
 `;
 const Img = styled.img`
   height: 22px;

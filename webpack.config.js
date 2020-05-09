@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-17 13:42:03
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-04-27 17:01:51
+ * @LastEditTime: 2020-05-09 14:26:18
  * @Description:
  */
 const path = require('path');
@@ -31,8 +31,8 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        test:/\.(s*)css$/,
+        use:['style-loader','css-loader', 'sass-loader']
       },
       {
         test: /\.(jpg|png|svg)$/,

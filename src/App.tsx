@@ -2,7 +2,7 @@
  * @Author: miaoyu
  * @Date: 2020-04-18 10:07:45
  * @LastEditors: miaoyu
- * @LastEditTime: 2020-05-09 11:44:22
+ * @LastEditTime: 2020-05-09 14:27:36
  * @Description:
  */
 import * as React from 'react';
@@ -16,13 +16,14 @@ import "antd/es/menu/style/index.css"
 import "antd/es/tooltip/style/index.css"
 import { ClickParam } from 'antd/lib/menu';
 // import 'antd/dist/antd.css';
-import './app.css';
+// import './app.css';
 import robotImg from './images/robot.png';
 import ChatRoomModal, { RefChatRoomModal } from './containers/ChatRoomModal';
 import useSocket, { setCurrentBusinessType } from './hooks/useSocket';
 import { configContext } from './ConfigContext';
 import salesImg from './images/sales.png';
 import preSalesImg from './images/pre_sales.png';
+import "./index.scss"
 
 interface Props {}
 
@@ -69,7 +70,7 @@ const App: React.FC<Props> = (props) => {
   );
 
   return (
-    <Box visible={visible} className="app">
+    <Box visible={visible} className="chat-robot-embedding">
       {showMenu ? (
         <Menu onClick={(param: ClickParam) => handleClick(param.key)} mode="vertical-right">
           <Menu.SubMenu title={robotBtn}>{MenuItems}</Menu.SubMenu>
@@ -82,14 +83,6 @@ const App: React.FC<Props> = (props) => {
   );
 };
 
-const Img = styled.img`
-  // height: 20px;
-  padding-right: 8px;
-`;
-
-const AvatarBox = styled.div`
-  cursor: pointer;
-`;
 
 const Box = styled.div`
   display: ${(props: { visible: boolean }) => (props.visible ? 'block' : 'none')};
@@ -105,6 +98,16 @@ const Box = styled.div`
     border-color: transparent;
   }
 `;
+
+const Img = styled.img`
+  // height: 20px;
+  padding-right: 8px;
+`;
+
+const AvatarBox = styled.div`
+  cursor: pointer;
+`;
+
 const MenuItemS = styled(Menu.Item)`
   display: flex;
   align-items: center;
